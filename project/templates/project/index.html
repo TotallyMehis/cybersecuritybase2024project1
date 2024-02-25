@@ -1,8 +1,25 @@
+{% load static %}
 <html>
     <head>
-        <title>Hello world</title>
+        <title>The Better Discord</title>
+        <script src="{% static 'main.js' %}"></script> 
+        <link rel="stylesheet" href="{% static 'styles.css' %}" />
     </head>
-    <body>
-        {{ test }}
+    <body onload="getMessages()">
+        <h1>The Better Discord</h1>
+        <a href="/login">Login</a>
+        <h2>Messages</h2>
+        <div id="messages" class="messages">
+            <p id="nomessages">There are no messages!</p>
+        </div>
+        <h2>New message:</h2>
+        <div class="newmessage">
+            <div>Nickname:</div>
+            <input type="text" id="name" value="Anonymous" readonly disabled />
+            <div>Message:</div>
+            <textarea id="message"></textarea>
+            <br />
+            <button onclick="newMessage()">Post message</button>
+        </div>
     </body>
 </html>

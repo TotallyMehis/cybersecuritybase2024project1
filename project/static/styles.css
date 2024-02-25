@@ -1,0 +1,33 @@
+.messages {
+    overflow: scroll;
+    height: 400px;
+}
+
+.newmessage {
+    margin-left: 0.75rem;
+}
+
+.msg:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.msg {
+    padding-bottom: 0.75rem;
+    padding-left: 0.75rem;
+    padding-top: 0.75rem;
+}
+
+.msg .name {
+    font-weight: 800;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.msg .content {
+    display: inline-block;
+}
+
+.msg .name::after {
+    content: ':';
+    margin-right: 0.5rem;
+}
