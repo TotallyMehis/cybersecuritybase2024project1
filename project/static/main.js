@@ -8,8 +8,13 @@ function newMessage() {
 
     const message = msgElement.value
     const name = nameElement.value
-    if (!message) {
-        alert('You must have a message!')
+
+    // A04:2021 – Insecure Design
+    // CWE-602: Client-Side Enforcement of Server-Side Security
+    // Back-end should also have this feature.
+    const failReason = checkMessageContents(message)
+    if (failReason) {
+        alert(failReason)
         return
     }
 
@@ -19,10 +24,25 @@ function newMessage() {
     const url = '/api/message?' + new URLSearchParams({ message })
 
     // A01:2021 – Broken Access Control
-    // CSRF vulnerability
+    // CWE-352 Cross-Site Request Forgery (CSRF)
     // Send a POST request instead and remember to use CSRF token.
     // fetch(url, { method: 'POST', headers: { 'X-CSRFToken': getCSRFToken() }})
     fetch(url, { method: 'GET' })
+}
+
+/**
+ * @param {string} message 
+ */
+function checkMessageContents(message) {
+    if (!message) {
+        return 'You must have a message!'
+    }
+
+    if (message.match(/(<|>)/)) {
+        return 'You cannot use characters < and >.'
+    }
+
+    return ''
 }
 
 function getCSRFToken() {
@@ -66,6 +86,7 @@ function createMessageElement(name, message) {
 
     /**
      * A03:2021 – Injection
+     * CWE-80: Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS)
      * Can be fixed using textContent instead of innerHTML.
      */
     nameElement.innerHTML = name

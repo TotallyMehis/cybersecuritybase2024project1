@@ -16,15 +16,18 @@ def logout_view(request):
     return redirect('/')
 
 def reset_view(request):
+    if not request.user.is_authenticated:
+        return redirect('/')
+
     context = {}
     if request.method == 'POST':
-        context['sent'] = logic.send_reset_email(request.POST.get('email'))
+        context['result'] = logic.reset_password(request)
 
     return render(request, 'project/reset.html', context)
 
 def apiNewMessage(request):
     # A01:2021 – Broken Access Control
-    # CSRF vulnerability
+    # CWE-352 Cross-Site Request Forgery (CSRF)
     # Check if the request method is POST.
     # This will require usage of CSRF token.
     # if request.method == 'POST':

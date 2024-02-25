@@ -12,7 +12,8 @@
     <body onload="">
         <h1>The Better Discord</h1>
         {% if request.user.is_authenticated %}
-            <a href="/logout">Logout</a>
+            <a href="/logout/">Logout</a>
+            <a href="/reset/">Change password</a>
         {% else %}
             <a href="/login/">Login</a>
         {% endif %}
@@ -22,6 +23,7 @@
                 {% for message in messages %}
                     <div class="msg">
                         <!-- A03:2021 – Injection -->
+                        <!-- CWE-80: Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS) -->
                         <!-- Django and many other frameworks automatically escape strings these days. -->
                         <div class="name">{{ message.name }}</div><div class="content">{% autoescape off %}{{ message.message }}{% endautoescape %}</div>
                     </div>
@@ -32,11 +34,14 @@
         </div>
         <h2>New message:</h2>
         <div class="newmessage">
-            <div>Nickname:</div>
-            <input required type="text" id="name" value="{% if request.user.is_authenticated %}{{ request.user.username }}{% else %}Anonymous{% endif %}" readonly disabled />
-            <div>Message:</div>
-            <textarea id="message" placeholder="Write your message here."></textarea>
-            <br />
+            <p>
+                <label>Nickname:</label>
+                <input required type="text" id="name" value="{% if request.user.is_authenticated %}{{ request.user.username }}{% else %}Anonymous{% endif %}" readonly disabled />
+            </p>
+            <p>
+                <label style="vertical-align: top">Message:</label>
+                <textarea id="message" placeholder="Write your message here."></textarea>
+            </p>
             <button onclick="newMessage()">Post message</button>
         </div>
         {% csrf_token %}
