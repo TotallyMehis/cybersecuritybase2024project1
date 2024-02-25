@@ -1,10 +1,13 @@
-# Project 1
+# Project 1 - The Better Discord
 
-My submission for Cyber Security Base 2024 Project 1.
+My submission for [Cyber Security Base 2024](https://cybersecuritybase.mooc.fi/) Project 1.
+A very basic messaging website, kind of like Discord. :)
 
 ## Requirements
 
-- You must have Python version 3.5 over newer.
+If you are doing the `Securing Software` course, you should have everything you need to run the application.
+
+- You must have Python 3 installed.
 - Django installed.
 
 ```bash
@@ -16,6 +19,8 @@ pip install django
 
 ```bash
 python manage.py runserver
+
+# Website can be found in: http://localhost:8000
 ```
 
 ## Users
@@ -26,5 +31,3 @@ List of users and their password for convenience. Format: `username:password`
 - `mudkipz4ever:coolstuff`
 - `worfdawarrior:trekker4laif`
 - `usetheforce:wedoalittletrolling`
-
-Their email addresses are: `<username>@example.com`
