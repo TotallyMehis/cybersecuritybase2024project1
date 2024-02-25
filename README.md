@@ -17,3 +17,14 @@ pip install django
 ```bash
 python manage.py runserver
 ```
+
+## Users
+
+List of users and their password for convenience. Format: `username:password`
+
+- `admin:admin`
+- `mudkipz4ever:coolstuff`
+- `worfdawarrior:trekker4laif`
+- `usetheforce:wedoalittletrolling`
+
+Their email addresses are: `<username>@example.com`

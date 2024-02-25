@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Reset Password</title>
+    </head>
+    <body>
+        <p>Type your email address to reset password.</p>
+        <form method = "POST">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Email address" />
+            <input type="submit" value="Send reset email" />
+        </form>
+        {% if request.method == 'POST' %}
+            <!-- A07:2021 – Identification and Authentication Failures -->
+            <!-- Attackers are able to detect whether user has an account -->
+            <!-- and can identify them based on their email address. -->
+            <!-- <p>Reset email has been sent.</p> -->
+            <p>{% if sent %}Reset email has been sent.{% else %}Account with that email address does not exist!{% endif %}</p>
+        {% endif %}
+    </body>
+</html>
