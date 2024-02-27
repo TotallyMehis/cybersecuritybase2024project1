@@ -31,8 +31,8 @@ def apiNewMessage(request):
     # Check if the request method is POST.
     # This will require usage of CSRF token.
     # if request.method == 'POST':
-    logic.create_message(request)
-    return JsonResponse({ 'ok': True })
+    ok = logic.create_message(request)
+    return JsonResponse({ 'ok': ok })
 
-def apiMessages(request):
-    return JsonResponse({ 'messages': logic.get_messages() })
+#def apiMessages(request):
+#    return JsonResponse({ 'messages': logic.get_messages() })

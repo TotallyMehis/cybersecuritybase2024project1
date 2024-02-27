@@ -6,10 +6,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 def create_message(request):
+    content = request.GET.get('message')
+    # A04:2021 – Insecure Design
+    # CWE-602: Client-Side Enforcement of Server-Side Security
+    # Missing logic:
+    # if not content or '<' in content or '>' in content:
+    #     return False
     message = models.Message.objects.create()
-    message.text = request.GET.get('message')
+    message.text = content
     message.owner = request.user if request.user.is_authenticated else None
     message.save()
+    return True
 
 def get_messages():
     messages = models.Message.objects.all()
