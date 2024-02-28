@@ -36,10 +36,13 @@ def reset_password(request):
     if check != new_password:
         return 'The passwords did not match!'
     
-    try:
-        validate_password(new_password, request.user)
-    except ValidationError:
-        return 'The password is not secure enough!'
+    # A07:2021 – Identification and Authentication Failures
+    # CWE-521: Weak Password Requirements
+    # Allows weak or no password at all.
+    # try:
+    #     validate_password(new_password, request.user)
+    # except ValidationError:
+    #     return 'The password is not secure enough!'
 
     request.user.set_password(new_password)
     request.user.save()
