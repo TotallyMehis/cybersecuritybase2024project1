@@ -56,15 +56,6 @@ function getCSRFToken() {
     }
 }
 
-async function getMessages() {
-    const response = await fetch('/api/messages', { method: 'GET' })
-    const content = await response.json()
-
-    for (const msg of content.messages) {
-        createMessageElement(msg.name, msg.message)
-    }
-}
-
 function createMessageElement(name, message) {
     const noMsgElement = document.getElementById('nomessages')
     if (noMsgElement) noMsgElement.remove()

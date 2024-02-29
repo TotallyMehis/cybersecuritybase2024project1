@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('api/message', views.apiNewMessage),
-    path('api/messages', views.apiMessages),
     path('login/', LoginView.as_view(template_name='project/login.html')),
     path('logout/', views.logout_view),
     path('reset/', views.reset_view),

@@ -33,6 +33,3 @@ def apiNewMessage(request):
     # if request.method == 'POST':
     ok = logic.create_message(request)
     return JsonResponse({ 'ok': ok })
-
-#def apiMessages(request):
-#    return JsonResponse({ 'messages': logic.get_messages() })
