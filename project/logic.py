@@ -50,6 +50,7 @@ def reset_password(request):
     # A09:2021 – Security Logging and Monitoring Failures
     # CWE-532: Insertion of Sensitive Information into Log File
     # Passwords and other sensitive information should not be logged at all.
+    # logger.debug(f'User {request.user.username} changed password')
     logger.debug(f'User {request.user.username} changed password to {new_password}')
 
     return 'Your password has been changed.'

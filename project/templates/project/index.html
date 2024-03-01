@@ -25,6 +25,8 @@
                         <!-- A03:2021 – Injection -->
                         <!-- CWE-80: Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS) -->
                         <!-- Django and many other frameworks automatically escape strings these days. -->
+                        <!-- Reintroduce escaping. -->
+                        <!-- <div class="name">{{ message.name }}</div><div class="content">{{ message.message }}</div> -->
                         <div class="name">{{ message.name }}</div><div class="content">{% autoescape off %}{{ message.message }}{% endautoescape %}</div>
                     </div>
                 {% endfor %}
